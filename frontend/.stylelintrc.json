@@ -1,0 +1,16 @@
+{
+    "extends": ["stylelint-config-clean-order"],
+    "rules": {
+        "selector-pseudo-class-no-unknown": null,
+        "selector-class-pattern": null,
+        "no-descending-specificity": null,
+        "custom-property-pattern": null,
+        "comment-pattern": [
+            "(TODO|\\*|!|\\?|^s*$|^s*//s*[*!?])",
+            {
+                "message": "Only TODO, *, !, and ? comments are allowed (for example: // TODO:, // *, // !, // ?)",
+                "severity": "error"
+            }
+        ]
+    }
+}
