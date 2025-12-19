@@ -7,7 +7,12 @@ import {
 	getBoards,
 	updateBoard,
 } from "../database/boards-repository";
-import { Board, CreateBoardRequest, GetBoardsResponse } from "../types/boards";
+import {
+	Board,
+	CreateBoardRequest,
+	GetBoardResponse,
+	GetBoardsResponse,
+} from "../types/boards";
 import { BoardIdParam } from "../types/common";
 import { validateBoardInput } from "./validation";
 
@@ -24,14 +29,16 @@ boardsRouter.get(
 
 boardsRouter.get(
 	"/:boardId",
-	async (req: Request<BoardIdParam>, res: Response<Board | string>) => {
+	async (
+		req: Request<BoardIdParam>,
+		res: Response<GetBoardResponse | string>,
+	) => {
 		const board = await getBoard(req.params.boardId);
 
 		if (!board) {
-			res.status(404).send(
-				`There is no board with id ${req.params.boardId}`,
-			);
-			return;
+			return res
+				.status(404)
+				.send(`There is no board with id ${req.params.boardId}`);
 		}
 
 		res.status(200).send(board);
