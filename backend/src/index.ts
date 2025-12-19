@@ -1,5 +1,6 @@
+import cors from "cors";
 import express from "express";
-import { PORT } from "./config";
+import { CORS_OPTIONS, PORT } from "./config";
 import { createTables } from "./database/create-tables";
 import { logger } from "./middleware/logger";
 import { boardsRouter } from "./routers/boards.router";
@@ -10,6 +11,7 @@ const run = async () => {
 	await createTables();
 
 	const server = express();
+	server.use(cors(CORS_OPTIONS));
 	server.use(express.json());
 	server.use(logger);
 
