@@ -1,5 +1,7 @@
+import { Router } from "./providers";
+
 function App() {
-    return <button>TEST</button>;
+    return <Router />;
 }
 
 export default App;

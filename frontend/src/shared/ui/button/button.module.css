@@ -1,0 +1,30 @@
+.button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: var(--accent);
+    transition:
+        0.2s background ease-in-out,
+        0.2s transform ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.03);
+        background: color-mix(in oklab, var(--accent) 70%, #000 30%);
+    }
+
+    &:active {
+        animation: click 0.2s linear both;
+    }
+}
+
+@keyframes click {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1.03);
+    }
+}

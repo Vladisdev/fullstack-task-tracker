@@ -1,4 +1,6 @@
 :root {
-    --bg-color: light-dark(#fff, hsl(196, 60%, 5%));
-    --text-color: light-dark(#000, hsl(300, 100%, 99%));
+    --bg-color: light-dark(#fff, #051014);
+    --text-color: light-dark(#000, #fffaff);
+
+    --accent: #6cc551;
 }

@@ -121,13 +121,32 @@ textarea {
     overflow: auto;
 }
 
-/** 8. Table resets */
+/** 8. Reset dialog element */
+dialog {
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    color: inherit;
+
+    background: none;
+}
+dialog::backdrop {
+    background: none;
+}
+dialog:not([open]) {
+    display: none;
+}
+
+/** 9. Table resets */
 table {
     border-spacing: 0;
     border-collapse: collapse;
 }
 
-/** 9. Clear html5 elements */
+/** 10. Clear html5 elements */
 article,
 aside,
 details,
@@ -144,7 +163,7 @@ summary {
     display: block;
 }
 
-/** 10. Remove default hr styles */
+/** 11. Remove default hr styles */
 hr {
     height: 0;
     margin: 1em 0;
@@ -156,12 +175,12 @@ hr {
     background: none;
 }
 
-/** 11. Remove focus outlines (handled by your UI) */
+/** 12. Remove focus outlines (handled by your UI) */
 :focus {
     outline: none;
 }
 
-/** 12. Remove built-in tap highlight on mobile */
+/** 13. Remove built-in tap highlight on mobile */
 a,
 button,
 input,
@@ -171,19 +190,19 @@ select {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/** 13. Remove selection color so it can be customized if desired */
+/** 14. Remove selection color so it can be customized if desired */
 ::selection {
     color: #222;
     background: #b3d4fc;
 }
 
-/** 14. Hide overflow by default, let layout control scrolling */
+/** 15. Hide overflow by default, let layout control scrolling */
 html,
 body {
     overflow-x: hidden;
 }
 
-/** 15. Set safe default for strong, b, i, em */
+/** 16. Set safe default for strong, b, i, em */
 b,
 strong {
     font-weight: bolder;
@@ -193,7 +212,7 @@ em {
     font-style: italic;
 }
 
-/** 16. Remove sub & sup font size reduction and offset */
+/** 17. Remove sub & sup font size reduction and offset */
 sub,
 sup {
     position: relative;
