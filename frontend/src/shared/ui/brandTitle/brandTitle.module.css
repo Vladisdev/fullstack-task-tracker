@@ -1,0 +1,10 @@
+.title {
+    font-size: 70px;
+    line-height: 1;
+
+    background: -webkit-linear-gradient(#eee, var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}

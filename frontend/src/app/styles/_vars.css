@@ -1,0 +1,6 @@
+:root {
+    --bg-color: light-dark(#fff, #051014);
+    --text-color: light-dark(#000, #fffaff);
+
+    --accent: #6cc551;
+}

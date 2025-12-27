@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+.title {
+    font-size: 36px;
+}

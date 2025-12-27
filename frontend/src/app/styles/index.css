@@ -1,0 +1,21 @@
+@import url(./_reset.css);
+@import url(./_vars.css);
+
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-synthesis: none;
+    line-height: 1.5;
+    color: var(--text-color);
+    text-rendering: optimizeLegibility;
+
+    color-scheme: light dark;
+    background-color: var(--bg-color);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    min-height: 100vh;
+}

@@ -1,0 +1,19 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    height: 100%;
+}
+
+.item {
+    flex-basis: 250px;
+    height: 100%;
+    border: 1px solid var(--accent);
+    border-radius: 25px;
+}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
