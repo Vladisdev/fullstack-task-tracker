@@ -5,7 +5,7 @@ import type { Board, CreateBoardDTO, GetBoardResponse } from "../model/types";
 const BOARD_API_BASE_PATH = "boards";
 const QUERY_KEY = "boards";
 
-export const useBoardService = {
+export const boardService = {
     useGetBoards: () =>
         useQuery<Board[]>({
             queryKey: [QUERY_KEY],

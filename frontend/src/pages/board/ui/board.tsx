@@ -1,5 +1,5 @@
 import { ROUTES } from "@/app/config";
-import { useBoardService } from "@/entities";
+import { boardService } from "@/entities";
 import { Container } from "@/shared/ui";
 import { Link, useParams } from "react-router";
 
@@ -10,7 +10,7 @@ export const Board = () => {
         isLoading,
         isError,
         error,
-    } = useBoardService.useGetBoardById(id ?? "");
+    } = boardService.useGetBoardById(id ?? "");
 
     if (isError && error instanceof Error) {
         console.log(error?.message, error?.stack);

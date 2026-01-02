@@ -1,10 +1,10 @@
 import { ROUTES } from "@/app/config";
-import { useBoardService, type Board } from "@/entities";
+import { boardService, type Board } from "@/entities";
 import { Link } from "react-router";
 import styles from "./boardsList.module.css";
 
 export const BoardsList = () => {
-    const { data: boards, isLoading, isError, error } = useBoardService.useGetBoards();
+    const { data: boards, isLoading, isError, error } = boardService.useGetBoards();
 
     // ! TODO create spinner component
     if (isLoading) return <p>Loading...</p>;

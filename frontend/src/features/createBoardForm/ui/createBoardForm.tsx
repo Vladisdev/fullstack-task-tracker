@@ -1,4 +1,4 @@
-import { useBoardService } from "@/entities";
+import { boardService } from "@/entities";
 import { Button, Input } from "@/shared/ui";
 import { type ComponentPropsWithRef, type FormEvent } from "react";
 import { submit } from "../api/createBoard";
@@ -7,7 +7,7 @@ import styles from "./createBoardForm.module.css";
 type CreateBoardFormProps = {} & ComponentPropsWithRef<"form">;
 
 export const CreateBoardForm = ({ ...props }: CreateBoardFormProps) => {
-    const { mutate: createBoard, isPending } = useBoardService.useCreateBoard();
+    const { mutate: createBoard, isPending } = boardService.useCreateBoard();
 
     return (
         <form
