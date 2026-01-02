@@ -1,6 +1,6 @@
 import { ROUTES } from "@/app/config";
 import { BrandTitle, Button, Modal } from "@/shared/ui";
-import { CreateBoardFrom } from "@/widgets";
+import { CreateBoardForm } from "@/widgets";
 import { useRef } from "react";
 import { Link } from "react-router";
 import styles from "./header.module.css";
@@ -17,7 +17,7 @@ export const Header = () => {
                 Create new board
             </Button>
             <Modal ref={dialogRef} title={"Create new board"}>
-                <CreateBoardFrom />
+                <CreateBoardForm />
             </Modal>
         </header>
     );

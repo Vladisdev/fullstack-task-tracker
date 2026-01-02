@@ -1,20 +1,24 @@
 import { ROUTES } from "@/app/config";
-import { boardApiService } from "@/entities";
+import { useGetBoardById } from "@/entities";
 import { Container } from "@/shared/ui";
-import { reatomComponent } from "@reatom/react";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 
-const boardRoute = boardApiService.getOneById;
+export const Board = () => {
+    const { id } = useParams<{ id: string }>();
+    const { data: board, isLoading, isError, error } = useGetBoardById(id ?? "");
 
-export const Board = reatomComponent(() => {
-    const board = boardRoute;
+    if (isError && error instanceof Error) {
+        console.log(error?.message, error?.stack);
+
+        return <p>Error: {error?.message}</p>;
+    }
 
     return (
         <Container>
             <div>
                 <Link to={ROUTES.boards}>Back</Link>
             </div>
-            {board.loader.ready() ? board.loader.data()?.name : <p>Loading...</p>}
+            {isLoading ? <p>Loading...</p> : board?.name}
         </Container>
     );
-});
+};

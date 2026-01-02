@@ -1,39 +1,27 @@
-import { ROUTES } from "@/app/config";
 import { apiService } from "@/shared/api/apiService";
-import { action, reatomRoute, withAsync } from "@reatom/core";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { Board, CreateBoardDTO, GetBoardResponse } from "../model/types";
 
-const boardApiBasePath = "boards";
+const BOARD_API_BASE_PATH = "boards";
+const QUERY_KEY = "boards";
 
-export const boardApiService = {
-    getMany: reatomRoute(
-        {
-            path: ROUTES.boards.substring(1),
-            async loader(): Promise<Board[]> {
-                const response = await apiService(boardApiBasePath).get();
-                const payload = await response.json();
+export const useGetBoards = () =>
+    useQuery<Board[]>({
+        queryKey: [QUERY_KEY],
+        queryFn: () => apiService(BOARD_API_BASE_PATH).get(),
+    });
 
-                return payload;
-            },
-        },
-        "getAllBoards",
-    ),
-    getOneById: reatomRoute(
-        {
-            path: `${ROUTES.boards.substring(1)}/:id`,
-            async loader({ id }): Promise<GetBoardResponse> {
-                const response = await apiService(`${boardApiBasePath}/${id}`).get();
-                const payload = await response.json();
+export const useGetBoardById = (id: string) =>
+    useQuery<GetBoardResponse>({
+        queryKey: [QUERY_KEY, id],
+        queryFn: () => apiService(`${BOARD_API_BASE_PATH}/${id}`).get(),
+    });
 
-                return payload;
-            },
-        },
-        "getOneBoard",
-    ),
-    create: action(async (body: CreateBoardDTO) => {
-        const response = await apiService(boardApiBasePath).post<Board, CreateBoardDTO>(
-            body,
-        );
-        return response;
-    }, "createBoardAction").extend(withAsync()),
+export const useCreateBoard = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: (body: CreateBoardDTO) => apiService(BOARD_API_BASE_PATH).post(body),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY_KEY] }),
+    });
 };

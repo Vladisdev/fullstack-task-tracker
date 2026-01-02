@@ -1,19 +1,16 @@
 import { ROUTES } from "@/app/config";
-import { boardApiService, type Board } from "@/entities";
-import { reatomComponent } from "@reatom/react";
+import { useGetBoards, type Board } from "@/entities";
 import { Link } from "react-router";
 import styles from "./boardsList.module.css";
 
-const {
-    loader: { data: boards, ready, error },
-} = boardApiService.getMany;
+export const BoardsList = () => {
+    const { data: boards, isLoading, isError, error } = useGetBoards();
 
-export const BoardsList = reatomComponent(() => {
     // ! TODO create spinner component
-    if (!ready()) return <p>Loading...</p>;
+    if (isLoading) return <p>Loading...</p>;
 
-    if (error()) {
-        if (error() instanceof Error) console.log(error()?.message, error()?.stack);
+    if (isError && error instanceof Error) {
+        console.log(error?.message, error?.stack);
 
         return (
             // ? TODO Error page
@@ -26,12 +23,12 @@ export const BoardsList = reatomComponent(() => {
 
     return (
         <ul className={styles.list}>
-            {boards()?.map((board) => (
+            {boards?.map((board) => (
                 <BoardsListItem key={board.id} {...board} />
             ))}
         </ul>
     );
-});
+};
 
 const BoardsListItem = (board: Board) => {
     return (

@@ -1,7 +1,12 @@
 import { Router } from "./providers";
+import { ReactQueryProvider } from "./providers/reactQueryProvider";
 
 function App() {
-    return <Router />;
+    return (
+        <ReactQueryProvider>
+            <Router />
+        </ReactQueryProvider>
+    );
 }
 
 export default App;
