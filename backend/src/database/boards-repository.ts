@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import {
 	Board,
 	GetBoardResponse,
@@ -5,6 +6,7 @@ import {
 	GetBoardResponseColumn,
 } from "../types/boards";
 import { Maybe } from "../types/common";
+import { createColumn } from "./columns-repository";
 import { sqliteAll, sqliteRun } from "./db-connection";
 
 type OneBoardDatabaseResult = {
@@ -24,6 +26,22 @@ export const createBoard = async (board: Board): Promise<void> => {
         `,
 		[board.id, board.name],
 	);
+
+	await createColumn({
+		id: randomUUID(),
+		name: "To Do",
+		boardId: board.id,
+	});
+	await createColumn({
+		id: randomUUID(),
+		name: "In Progress",
+		boardId: board.id,
+	});
+	await createColumn({
+		id: randomUUID(),
+		name: "Done",
+		boardId: board.id,
+	});
 };
 
 export const updateBoard = async (board: Board): Promise<void> => {
