@@ -1,10 +1,19 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
-    border-bottom: 1px solid #3c3c3c;
+    background: light-dark(
+        rgba(245, 247, 250, 0.98),
+        rgba(22, 22, 22, 0.98)
+    );
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .title {
     font-size: 36px;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.2s ease-in-out;
 }

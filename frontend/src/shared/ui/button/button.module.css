@@ -1,10 +1,15 @@
 .button {
     padding: 5px 10px;
     border-radius: 10px;
+
+    color: #ffffff;
+
     background: var(--accent);
+
     transition:
         0.2s background ease-in-out,
-        0.2s transform ease-in-out;
+        0.2s transform ease-in-out,
+        0.2s color ease-in-out;
 
     &:hover,
     &:focus-visible {
