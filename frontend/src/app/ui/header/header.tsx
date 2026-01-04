@@ -7,17 +7,23 @@ import styles from "./header.module.css";
 
 export const Header = () => {
     const dialogRef = useRef<HTMLDialogElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     return (
         <header className={styles.header}>
             <Link to={ROUTES.index}>
                 <BrandTitle className={styles.title} />
             </Link>
-            <Button onClick={() => dialogRef.current?.showModal()}>
+            <Button
+                onClick={() => {
+                    dialogRef.current?.showModal();
+                    inputRef.current?.focus();
+                }}
+            >
                 Create new board
             </Button>
             <Modal ref={dialogRef} title={"Create new board"}>
-                <CreateBoardForm />
+                <CreateBoardForm inputRef={inputRef} />
             </Modal>
         </header>
     );
