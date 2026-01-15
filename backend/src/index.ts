@@ -17,8 +17,6 @@ const run = async () => {
 
 	server.get("/", (req, res) => res.send("Ok"));
 
-	// TODO: Auto-create some columns on POST /boards
-
 	server.use("/boards", boardsRouter);
 	server.use("/boards/:boardId/columns", columnsRouter);
 	server.use("/boards/:boardId/columns/:columnId/cards", cardsRouter);

@@ -63,6 +63,7 @@ cardsRouter.post(
 			id: randomUUID(),
 			text: body.text,
 			columnId: params.columnId,
+			createdAt: new Date().toISOString(),
 		};
 
 		await createCard(card);
@@ -98,6 +99,7 @@ cardsRouter.put(
 			id: params.cardId,
 			text: body.text,
 			columnId: params.columnId,
+			createdAt: new Date().toISOString(),
 		};
 
 		await updateCard(card);
