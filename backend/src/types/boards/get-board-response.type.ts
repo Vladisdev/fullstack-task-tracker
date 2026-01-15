@@ -1,6 +1,7 @@
 export type GetBoardResponseCard = {
 	id: string;
 	text: string;
+	createdAt: string;
 };
 
 export type GetBoardResponseColumn = {

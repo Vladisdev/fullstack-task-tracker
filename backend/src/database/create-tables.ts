@@ -27,6 +27,7 @@ export const createTables = async () => {
 	        id TEXT PRIMARY KEY,
 	        text TEXT NOT NULL,
 	        column_id TEXT NOT NULL,
+			created_at TEXT NOT NULL,
 	        FOREIGN KEY (column_id) REFERENCES columns(id)
 	    )
 	`,

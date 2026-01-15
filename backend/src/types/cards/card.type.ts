@@ -2,5 +2,5 @@ export type Card = {
 	id: string;
 	text: string;
 	columnId: string;
-	// boardId: string;
+	createdAt: string;
 };

@@ -5,10 +5,10 @@ import { sqliteAll, sqliteGet, sqliteRun } from "./db-connection";
 export const createCard = async (card: Card): Promise<void> => {
 	await sqliteRun(
 		`
-            INSERT INTO cards(id, text, column_id)
-            VALUES (?, ?, ?)
+            INSERT INTO cards(id, text, column_id, created_at)
+            VALUES (?, ?, ?, ?)
         `,
-		[card.id, card.text, card.columnId],
+		[card.id, card.text, card.columnId, card.createdAt],
 	);
 };
 
@@ -39,7 +39,7 @@ export const getCard = async ({
 }: CardIdParams): Promise<Card | null> => {
 	const data = await sqliteGet(
 		`
-         SELECT cards.id, cards.text, cards.column_id as "columnId", columns.board_id as "boardId" 
+         SELECT cards.id, cards.text, cards.column_id as "columnId", columns.board_id as "boardId", cards.created_at as "createdAt"
 		 FROM cards LEFT JOIN columns
 		 ON cards.column_id = columns.id
 		 WHERE cards.id = ? AND columns.id = ? AND columns.board_id = ?
@@ -58,7 +58,7 @@ export const getCards = async ({
 }: ColumnIdParams): Promise<Card[]> => {
 	const data = await sqliteAll(
 		`
-		SELECT cards.id, cards.text, cards.column_id as "columnId", columns.board_id as "boardId"
+		SELECT cards.id, cards.text, cards.column_id as "columnId", cards.created_at as "cardCreatedAt", columns.board_id as "boardId"
 		FROM cards LEFT JOIN columns
 		ON cards.column_id = columns.id
 		WHERE columns.id = ? AND columns.board_id = ?
@@ -83,5 +83,11 @@ export const getCards = async ({
 
 const isCard = (data: unknown): data is Card => {
 	const card = data as Card;
-	return !!(card && typeof card === "object" && card.id && card.text);
+	return !!(
+		card &&
+		typeof card === "object" &&
+		card.id &&
+		card.text &&
+		card.createdAt
+	);
 };
