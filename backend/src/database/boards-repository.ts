@@ -16,6 +16,7 @@ type OneBoardDatabaseResult = {
 	columnName?: Maybe<string>;
 	cardId?: Maybe<string>;
 	cardText?: Maybe<string>;
+	cardCreatedAt?: Maybe<string>;
 };
 
 export const createBoard = async (board: Board): Promise<void> => {
@@ -27,21 +28,23 @@ export const createBoard = async (board: Board): Promise<void> => {
 		[board.id, board.name],
 	);
 
-	await createColumn({
-		id: randomUUID(),
-		name: "To Do",
-		boardId: board.id,
-	});
-	await createColumn({
-		id: randomUUID(),
-		name: "In Progress",
-		boardId: board.id,
-	});
-	await createColumn({
-		id: randomUUID(),
-		name: "Done",
-		boardId: board.id,
-	});
+	await Promise.all([
+		await createColumn({
+			id: randomUUID(),
+			name: "To Do",
+			boardId: board.id,
+		}),
+		await createColumn({
+			id: randomUUID(),
+			name: "In Progress",
+			boardId: board.id,
+		}),
+		await createColumn({
+			id: randomUUID(),
+			name: "Done",
+			boardId: board.id,
+		}),
+	]);
 };
 
 export const updateBoard = async (board: Board): Promise<void> => {
@@ -75,7 +78,8 @@ export const getBoard = async (
 		 	columns.id as "columnId", 
 			columns.name as "columnName",
 			cards.id as "cardId",
-			cards.text as "cardText"
+			cards.text as "cardText",
+			cards.created_at as "cardCreatedAt"
 		 FROM boards
 		 LEFT JOIN columns ON boards.id = columns.board_id
 		 LEFT JOIN cards ON columns.id = cards.column_id
@@ -121,6 +125,7 @@ const mapOneBoardResult = (
 		column.cards.push({
 			id: row.cardId,
 			text: row.cardText!,
+			createdAt: row.cardCreatedAt!,
 		} satisfies GetBoardResponseCard);
 	}
 
