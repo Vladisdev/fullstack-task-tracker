@@ -21,8 +21,9 @@
 
 .title {
     margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--stroke-color);
 
-    font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-color);
     text-align: center;

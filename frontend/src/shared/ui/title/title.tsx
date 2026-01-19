@@ -5,10 +5,10 @@ import styles from "./title.module.css";
 
 type Titles = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
-type TitleProps = {
+interface TitleProps extends ComponentPropsWithRef<Titles> {
     element: Titles;
     text: string;
-} & ComponentPropsWithRef<Titles>;
+}
 
 export const Title = ({ element, className, text, ...props }: TitleProps) => {
     return createElement(element, {

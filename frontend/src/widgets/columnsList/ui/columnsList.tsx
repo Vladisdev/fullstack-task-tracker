@@ -1,9 +1,9 @@
 import { ColumnComponent, type Column } from "@/entities";
 import styles from "./columnsList.module.css";
 
-type ColumnsListProps = {
+interface ColumnsListProps {
     columns: Column[];
-};
+}
 
 export const ColumnsList = ({ columns }: ColumnsListProps) => {
     return (

@@ -1,12 +1,13 @@
 import { ROUTES } from "@/app/config";
 import { CreateBoardForm } from "@/features";
+import { useBoolean } from "@/shared/lib";
 import { BrandTitle, Button, Modal } from "@/shared/ui";
 import { useRef } from "react";
 import { Link } from "react-router";
 import styles from "./header.module.css";
 
 export const Header = () => {
-    const dialogRef = useRef<HTMLDialogElement | null>(null);
+    const [isOpened, open, close] = useBoolean(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     return (
@@ -16,15 +17,17 @@ export const Header = () => {
             </Link>
             <Button
                 onClick={() => {
-                    dialogRef.current?.showModal();
+                    open();
                     inputRef.current?.focus();
                 }}
             >
                 Create new board
             </Button>
-            <Modal ref={dialogRef} title={"Create new board"}>
-                <CreateBoardForm inputRef={inputRef} />
-            </Modal>
+            {isOpened && (
+                <Modal title={"Create new board"} close={close}>
+                    <CreateBoardForm inputRef={inputRef} />
+                </Modal>
+            )}
         </header>
     );
 };

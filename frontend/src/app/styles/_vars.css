@@ -1,8 +1,10 @@
 :root {
-    --bg-color: light-dark(#F5F7FA, #1A1A1A);
-    --text-color: light-dark(#2C3E50, #E4E4E4);
+    --bg-color: light-dark(#f5f7fa, #1a1a1a);
+    --text-color: light-dark(#2c3e50, #e4e4e4);
 
-    --accent: #2563EB;
+    --accent: #2563eb;
+
+    --stroke-color: light-dark(rgba(209, 217, 224, 0.6), rgba(255, 255, 255, 0.1));
 
     --shadow-sm: light-dark(
         0 1px 2px 0 rgba(44, 62, 80, 0.08),

@@ -4,9 +4,9 @@ import { type ComponentPropsWithRef, type FormEvent, type RefObject } from "reac
 import { submit } from "../api/createBoard";
 import styles from "./createBoardForm.module.css";
 
-type CreateBoardFormProps = {
+interface CreateBoardFormProps extends ComponentPropsWithRef<"form"> {
     inputRef?: RefObject<HTMLInputElement | null>;
-} & ComponentPropsWithRef<"form">;
+}
 
 export const CreateBoardForm = ({ inputRef, ...props }: CreateBoardFormProps) => {
     const { mutate: createBoard, isPending } = boardService.useCreateBoard();

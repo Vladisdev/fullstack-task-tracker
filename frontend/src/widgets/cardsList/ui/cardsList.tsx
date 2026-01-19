@@ -1,9 +1,9 @@
 import type { Card } from "@/entities";
 import styles from "./cardsList.module.css";
 
-type CardsListProps = {
+interface CardsListProps {
     cards: Card[];
-};
+}
 
 export const CardsList = ({ cards }: CardsListProps) => {
     return (
