@@ -1,20 +1,29 @@
 import { ROUTES } from "@/app/config";
-import { boardApiService } from "@/entities";
+import { boardService } from "@/entities";
 import { Container } from "@/shared/ui";
-import { reatomComponent } from "@reatom/react";
-import { Link } from "react-router";
+import { ColumnsList } from "@/widgets";
+import { Link, useParams } from "react-router";
+import styles from "./board.module.css";
 
-const boardRoute = boardApiService.getOneById;
+export const Board = () => {
+    const { id } = useParams<{ id: string }>();
+    const { data: board, isError, error } = boardService.useGetBoardById(id ?? "");
 
-export const Board = reatomComponent(() => {
-    const board = boardRoute;
+    if (isError && error instanceof Error) {
+        console.log(error?.message, error?.stack);
+
+        return <p>Error: {error?.message}</p>;
+    }
 
     return (
         <Container>
-            <div>
-                <Link to={ROUTES.boards}>Back</Link>
+            <div className={styles.header}>
+                <Link to={ROUTES.boards} className={styles.backLink}>
+                    ← Back
+                </Link>
             </div>
-            {board.loader.ready() ? board.loader.data()?.name : <p>Loading...</p>}
+            <h1 className={styles.title}>{board?.name}</h1>
+            {board?.columns ? <ColumnsList columns={board.columns} /> : "No columns"}
         </Container>
     );
-});
+};

@@ -1,0 +1,19 @@
+.card {
+    cursor: pointer;
+
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid light-dark(rgba(209, 217, 224, 0.6), rgba(255, 255, 255, 0.1));
+    border-radius: 8px;
+
+    background: light-dark(rgba(250, 252, 255, 0.9), rgba(35, 35, 35, 0.8));
+    box-shadow: var(--shadow-sm);
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        background: light-dark(rgba(255, 255, 255, 0.98), rgba(42, 42, 42, 0.95));
+        box-shadow: var(--shadow-md);
+    }
+}

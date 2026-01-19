@@ -11,7 +11,12 @@ export const apiService = (path: string, fetchParams?: Omit<RequestInit, "method
     };
 
     return {
-        get: async () => await fetch(`${backendUrl}/${path}`, params),
+        get: async <ResponseType>(): Promise<ResponseType> => {
+            const response = await fetch(`${backendUrl}/${path}`, params);
+            const payload = await response.json();
+
+            return payload as ResponseType;
+        },
         post: async <ResponseType, BodyType>(body: BodyType): Promise<ResponseType> => {
             const response = await fetch(`${backendUrl}/${path}`, {
                 ...params,

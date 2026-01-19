@@ -1,3 +1,5 @@
+import type { Column } from "@/entities";
+
 export type Board = {
     id: string;
     name: string;
@@ -11,15 +13,4 @@ export type GetBoardResponse = {
 
 export type CreateBoardDTO = {
     name: string;
-};
-
-type Column = {
-    id: string;
-    name: string;
-    cards: Card[];
-};
-
-type Card = {
-    id: string;
-    text: string;
 };

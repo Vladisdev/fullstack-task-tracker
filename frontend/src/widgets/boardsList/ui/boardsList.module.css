@@ -1,7 +1,7 @@
 .list {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 16px;
     height: 100%;
 }
 
@@ -9,11 +9,33 @@
     flex-basis: 250px;
     height: 100%;
     border: 1px solid var(--accent);
-    border-radius: 25px;
+    border-radius: 16px;
+    background: light-dark(
+        rgba(240, 244, 248, 0.95),
+        rgba(28, 28, 28, 0.95)
+    );
+    box-shadow: var(--shadow-md);
+    
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in oklab, var(--accent) 80%, var(--text-color) 20%);
 }
 
 .link {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
+    height: 100%;
+    color: var(--text-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.item:hover .link {
+    color: var(--accent);
 }
